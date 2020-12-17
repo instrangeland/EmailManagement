@@ -1,3 +1,27 @@
-mainFile open testemails_Duplicates.xlsx
-mainFile remove_duplicates
-mainFile save_as testemails_DuplicateFree.xlsx
+
+mainFile open testemails_Optinsurvey2.xlsx
+secondColumnOnly new_table
+mainFile copy_over secondColumnOnly
+secondColumnOnly remove_blank_in Contact2
+secondColumnOnly save_as save.xlsx
+python_begin
+print(self.tables.keys())
+table = self.tables["secondColumnOnly"]
+neworder = table.columns
+newTable = pd.DataFrame()
+indexOfEmailKey = table.columns.get_loc("Contact2")
+for index, row in table.iterrows():
+    if "@" in row[indexOfEmailKey]:
+        splitVal = row[indexOfEmailKey].split()
+        emails = [word for word in splitVal if "@" in word]
+        row[indexOfEmailKey] = emails[0]
+        newTable = newTable.append(row)
+newTable = newTable.reindex(columns=neworder)
+self.tables["secondColumnOnly"] = newTable
+python_end
+secondColumnOnly copy_column Contact2 to Email
+secondColumnOnly save_as sec.xlsx
+secondColumnOnly remove_blank_in Email
+
+mainFile remove_lines_matching secondColumnOnly
+mainFile save_as fullDuplicateFree.xlsx
