@@ -11,7 +11,7 @@ from functs import *
 commands = []
 string = ""
 workplace = Workspace()
-with open("../config.txt", 'r') as configFile:
+with open("config.txt", 'r') as configFile:
     lineNum = 0
     for line in configFile:
         lineNum+=1
