@@ -1,0 +1,6 @@
+mainFile open testemails_Duplicates.xlsx
+mainFile copy_over copyOfMain
+mainFile remove_duplicates
+copyOfMain keep_only_duplicates
+copyOfMain append_to mainFile
+mainFile save_as testemails_DuplicateFree.xlsx
