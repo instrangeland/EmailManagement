@@ -1,4 +1,5 @@
 mainFile open testemails_Duplicates.xlsx
+copyOfMain new_table
 mainFile copy_over copyOfMain
 mainFile remove_duplicates
 copyOfMain keep_only_duplicates
