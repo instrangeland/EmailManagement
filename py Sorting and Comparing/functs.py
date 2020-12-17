@@ -91,7 +91,8 @@ class Workspace:
     def removeDuplicates(self, sourceFrame, args):
         if sourceFrame not in self.tables:
             self.error("table " + sourceFrame + " does not exist!")
-        self.tables[sourceFrame] = self.tables[sourceFrame].drop_duplicates(subset=['Email'], keep=False)
+        self.tables[sourceFrame] = self.tables[sourceFrame].sort_values("First Name")
+        self.tables[sourceFrame] = self.tables[sourceFrame].drop_duplicates(subset=['Email'], keep="first")
 
     def keepDuplicates(self, sourceFrame, args):
         if sourceFrame not in self.tables:
