@@ -3,6 +3,8 @@ import sys
 import os.path
 import os
 
+skippables = ["title", "note", "high_level_desc", "args", "arg_desc"]
+
 class Workspace:
     def __init__(self):
         self.tables = {}
@@ -48,7 +50,7 @@ class Workspace:
                 self.copyColumn(sourceFrame, args)
             elif "remove_blank_in" == command:
                 self.removeBlankIn(sourceFrame, args)
-            elif "note" == command:
+            elif sourceFrame in skippables:
                 pass
             else:
                 self.error("command "+command+" does not exist")

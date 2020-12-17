@@ -9,6 +9,5 @@ for index, row in table.iterrows():
         seenDuplicate.append(row[2])
         singleInstanceDuplicates = singleInstanceDuplicates.append(row)
 secondColumnOnly copy_column Contact2 to Email
-secondColumnOnly save_as saved.xlsx
 secondColumnOnly remove_blank_in Email
 secondColumnOnly save_as save.xlsx
