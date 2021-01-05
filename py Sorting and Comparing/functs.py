@@ -153,8 +153,8 @@ class Workspace:
 
     def fileValidExcel(self, pathTo):
         fullPath = os.path.abspath(pathTo)
-        if not os.path.splitext(fullPath)[1] == ".xlsx":
-            self.error("path " + pathTo + " is not an xlsx file")
+        if not os.path.splitext(fullPath)[1] == ".xlsx" and not os.path.splitext(fullPath)[1] == ".csv":
+            self.error("path " + pathTo + " is not an xlsx or csv file")
 
     def fileExists(self, pathTo):
         fullPath = os.path.abspath(pathTo)
