@@ -190,7 +190,7 @@ class Workspace:
     def removeBlankIn(self, dataframe, args):
         colName = self.parseColumn(args)
         table = self.tables[dataframe]
-        table = table.dropna(how = "any", subset = ["Contact2"])
+        table = table.dropna(how = "any", subset = [args[0]])
         self.tables[dataframe] = table
         print("Ho")
     def swap(self, dataframe, args):
