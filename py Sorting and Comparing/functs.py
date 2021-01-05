@@ -224,6 +224,3 @@ class Workspace:
 
 
 
-ta = open("testemails_Optinsurvey2.xlsx")
-
-
