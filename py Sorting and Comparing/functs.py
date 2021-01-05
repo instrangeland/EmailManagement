@@ -3,7 +3,7 @@ import sys
 import os.path
 import os
 
-skippables = ["title", "note", "high_level_desc", "args", "arg_desc"]
+skippables = ["title", "note", "desc", "args", "arg_desc"]
 
 class Workspace:
     def __init__(self):
@@ -25,7 +25,7 @@ class Workspace:
                 self.pythonSource.append(line)
         else:
             sourceFrame, command, args = self.breakdownCommand(line)
-
+            print(command)
             if "new_table" == command:
                 self.newFrame(sourceFrame, args)
             elif "delete" == command:
@@ -50,6 +50,8 @@ class Workspace:
                 self.copyColumn(sourceFrame, args)
             elif "remove_blank_in" == command:
                 self.removeBlankIn(sourceFrame, args)
+            elif "swap" == command:
+                self.swap(sourceFrame, args)
             elif sourceFrame in skippables:
                 pass
             else:
@@ -186,7 +188,22 @@ class Workspace:
         table = table.dropna(how = "any", subset = ["Contact2"])
         self.tables[dataframe] = table
         print("Ho")
+    def swap(self, dataframe, args):
+        if len(args) < 3:
+            self.error("swap requires a source and destination columnn, seperated by \"and\"!")
+        else:
+            frame = self.tables[dataframe]
+            toLocation = args.index("and")
 
+
+
+            col1Name = self.parseColumn(args, end=toLocation)
+            col2Name = self.parseColumn(args, start = toLocation+1, end=len(args))
+            a = frame[col1Name].copy()
+            b = frame[col2Name].copy()
+            frame[col1Name] = b
+            frame[col2Name] = a
+            self.tables[dataframe] = frame
 
 
 ta = open("testemails_Optinsurvey2.xlsx")
