@@ -82,7 +82,10 @@ class Workspace:
     def openFile(self, sourceFrame, args):
         self.fileExists(args[0])
         self.fileValidExcel(args[0])
-        newDF = pd.read_excel(args[0],engine='openpyxl')
+        if ".csv" in args[0]:
+            newDF = pd.read_csv(args[0])
+        else:
+            newDF = pd.read_excel(args[0], engine='openpyxl')
         self.tables[sourceFrame] = newDF
 
     def newFrame(self, sourceFrame, args):

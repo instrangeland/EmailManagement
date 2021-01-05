@@ -4,7 +4,6 @@ args pathToMainFile pathToCompareFile saveFile
 mainFile open pathToMainFile
 secondaryFile open pathToCompareFile
 mainFile remove_lines_matching secondaryFile
-secondaryFile swap Contact2 and Email
+mainFile swap Contact2 and Email
 mainFile remove_lines_matching secondaryFile
-secondaryFile copy_column Contact2 to Email
 mainFile save_as saveFile
