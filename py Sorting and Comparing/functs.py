@@ -52,6 +52,8 @@ class Workspace:
                 self.removeBlankIn(sourceFrame, args)
             elif "swap" == command:
                 self.swap(sourceFrame, args)
+            elif "build_from" == command:
+                self.buildFrom(sourceFrame,args)
             elif sourceFrame in skippables:
                 pass
             else:
@@ -207,6 +209,19 @@ class Workspace:
             frame[col1Name] = b
             frame[col2Name] = a
             self.tables[dataframe] = frame
+    def buildFrom(self, sourceFrame, args):
+        if sourceFrame not in self.tables:
+            self.error("table " + sourceFrame + " does not exist!")
+        self.newFrame("temp", None)
+        frameExists = False
+        for file in args:
+            self.openFile("temp", [file])
+            if not frameExists:
+                self.tables[sourceFrame] = self.tables["temp"]
+                frameExists = True
+            else:
+                self.tables[sourceFrame] = self.tables[sourceFrame].append(self.tables["temp"])
+
 
 
 ta = open("testemails_Optinsurvey2.xlsx")

@@ -6,4 +6,4 @@ secondaryFile open pathToCompareFile
 mainFile remove_lines_matching secondaryFile
 mainFile swap Contact2 and Email
 mainFile remove_lines_matching secondaryFile
-mainFile save_as saveFile
+mainFile save_as saveFile.xlsx
